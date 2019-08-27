@@ -261,3 +261,183 @@ cout<<ptr->data<<endl;
         cout<<myList.isSorted();
         isSorted(listOfLists);*/
 }
+
+
+
+
+//MOE:
+#include <iostream>
+
+using namespace std;
+
+template<typename T>
+struct node {
+	T data;
+	node<T> *next;// ?
+	node() :next(NULL) {}
+	node(const T& d, node<T>*nextt) :data(d), next(nextt) {}
+	node& operator!=(const node<T>& other)
+	{
+		return this->data != other.data&&this->next != other.next;
+	}
+};
+
+template<typename T>
+class list {
+private:
+	node<T> *head;
+	node<T> *curr;
+	node<T> *temp;
+	node<T> *last;
+public:
+	list()
+	{
+		head = NULL;
+		curr = NULL;
+		temp = NULL;
+	}
+	node<T>* getHead(){
+        return head;
+	}
+	void addNodeEnd(T d){
+	    node<T>* n=new node<T>(d,NULL);
+	    if(head==NULL){
+            head=n;
+	    }
+	    else
+        {
+            curr=head;
+            while(curr->next!=NULL){
+                curr=curr->next;
+            }
+            curr->next=n;
+
+        }
+	}
+	void print()
+    {
+        curr = head;
+        while (curr != NULL)
+        {
+            cout << curr->data << " ";
+            curr = curr->next;
+        }
+        cout<<endl;
+    }
+    void printMult()
+    {
+        cout<<"print list of lists: "<<endl;
+        curr=head;
+        while(curr!=NULL){
+            curr->data.print();
+            curr=curr->next;
+        }
+        cout<<endl;
+    }
+    int size()
+    {
+        curr=head;
+        int s=0;
+
+        while(curr!=NULL)
+        {
+            s++;
+            curr=curr->next;
+        }
+
+        return s;
+    }
+    T get(int index){
+        curr=head;
+        while (index--&&curr!= NULL)
+        {
+            curr = curr->next;
+        }
+        if (curr == NULL)
+        {
+            cout << "the list does not have so many elements" << endl;
+        }
+        return curr->data;
+    }
+    void remove_head(){
+        curr=head;
+        head=head->next;
+        delete curr;
+    }
+  void sorting(){
+        node<T>* cur1 = head;
+        node<T>* cur2 = head;
+
+       for (int i = 0; i < size(); i++) {
+        for (int j = 0; j < size() - 1; j++) {
+            if (cur1->data < cur2->data) {
+                //cout<<i<<"-"<<cur1->data<<"- "<<cur2->data<<endl;
+                int temp = cur1->data;
+                cur1->data = cur2->data;
+                cur2->data = temp;
+
+            }
+            cur2 = cur2->next;
+        }
+         cur2 = head;
+         cur1 = head->next;
+         for (int k = 0; k < i; k++) {
+                cur1 = cur1->next;
+         }
+    }
+   // print();
+}
+
+};
+template<typename T>
+void func(list<T> listOfLists){
+    int n=listOfLists.size();
+    int size_of_sorted=0;
+    for(int i=0;i<n;i++){
+        list<int> el=listOfLists.get(i);
+        size_of_sorted+=el.size();
+        el.sorting();
+    }
+    list<int> sorted;
+    //while(sorted.size() < size_of_sorted){
+        int minIdx=0;
+        list<int> el=listOfLists.get(0);
+        //el.print();
+        int minel=listOfLists.get(0).get(0);
+        cout<<minel;
+        for(int i=0;i<size_of_sorted;i++){
+            if(minel>listOfLists.get(i).get(0)){
+                minel=listOfLists.get(i).get(0);
+                minIdx=i;
+            }
+        }
+    //}
+
+}
+int main()
+{
+    list<int> l;
+    l.addNodeEnd(5);
+    l.addNodeEnd(7);
+    l.addNodeEnd(1);
+    l.addNodeEnd(3);
+    l.print();
+    //l.sorting();
+    //l.print();
+
+
+     list<int> l2;
+    l2.addNodeEnd(1);
+    l2.addNodeEnd(4);
+    l2.addNodeEnd(7);
+    l2.addNodeEnd(0);
+    l2.print();
+
+    list<list<int> > listOfLists;
+    listOfLists.addNodeEnd(l);
+    listOfLists.addNodeEnd(l2);
+    listOfLists.printMult();
+    func(listOfLists);
+    listOfLists.printMult();
+
+}

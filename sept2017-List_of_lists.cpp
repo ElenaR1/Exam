@@ -17,6 +17,7 @@ private:
     box<T> *first;
 
 public:
+    int a=5;
     List ()
     {
         first = NULL;
@@ -138,6 +139,7 @@ public:
        for (int i = 0; i < size(); i++) {
         for (int j = 0; j < size() - 1; j++) {
             if (cur1->data < cur2->data) {
+                cout<<i<<"-"<<cur1->data<<"- "<<cur2->data<<endl;
                 int temp = cur1->data;
                 cur1->data = cur2->data;
                 cur2->data = temp;
@@ -220,11 +222,16 @@ void doStuff(List<List<int> > arg)
 
 int main()
 {
-
+box<int> b(5,NULL);
+box<int> *ptr=new box<int>(6,NULL);
+cout<<ptr->data<<endl;
+    cout<<b.data<<endl;
      List<int> l;
-     l.push(4);
+     l.push(1);
      l.push(3);
-     l.push(5);
+     l.push(4);
+     l.print();
+     cout<<l.a<<endl;
      l.sorting();
 
     List<int> myList;

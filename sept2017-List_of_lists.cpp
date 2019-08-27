@@ -50,7 +50,7 @@ public:
 
     List<T>& push (const T &newElemValue)
     {
-        first = new box<T> (newElemValue,first);
+        first = new box<T> (newElemValue,first);//vseli put slagame noviq element otpred i toi sochi kum tekushtata glava i posle toi stava head
         return *this;
     }
 
@@ -131,6 +131,28 @@ public:
         }
         return true;
     }
+    void sorting(){
+        box<T>* cur1 = first;
+        box<T>* cur2 = first;
+
+       for (int i = 0; i < size(); i++) {
+        for (int j = 0; j < size() - 1; j++) {
+            if (cur1->data < cur2->data) {
+                int temp = cur1->data;
+                cur1->data = cur2->data;
+                cur2->data = temp;
+
+            }
+            cur2 = cur2->next;
+        }
+         cur2 = first;
+         cur1 = first->next;
+         for (int k = 0; k < i; k++) {
+                cur1 = cur1->next;
+         }
+    }
+    print();
+}
 };
 
 void doStuff(List<List<int> > arg)
@@ -139,9 +161,17 @@ void doStuff(List<List<int> > arg)
     int onlySortedOnesTotalSize = 0;
     for(int i=0; i<arg.size(); i++)
     {
+
         List<int> tmp = arg.get_ith(i).data;
+        cout<<"print: ";
+        tmp.print();
         if(tmp.isSorted())
         {
+            onlySortedOnesTotalSize += tmp.size();
+            onlySortedOnes.push(tmp);
+        }
+        else{
+            tmp.sorting();
             onlySortedOnesTotalSize += tmp.size();
             onlySortedOnes.push(tmp);
         }
@@ -150,6 +180,7 @@ void doStuff(List<List<int> > arg)
     for(int i=0; i<onlySortedOnes.size(); i++)
     {
         List<int> tmp = onlySortedOnes.get_ith(i).data;
+        cout<<"elems in onlySortedOnes: ["<<i<<"]"<<endl;
         tmp.print();
     }
 
@@ -158,19 +189,22 @@ void doStuff(List<List<int> > arg)
     {
 
         int minIdx = 0;
-        int minimum = onlySortedOnes.get_ith(0).data.get_ith(0).data;
+         List<int> first_list_in_onlySortedOnes=onlySortedOnes.get_ith(0).data;
+        int minimum = first_list_in_onlySortedOnes.get_ith(0).data;//1
 
         for(int i=0; i<onlySortedOnes.size(); i++)
         {
-            if(minimum >  onlySortedOnes.get_ith(i).data.get_ith(0).data)
+            List<int> ith_list_in_onlySortedOnes=onlySortedOnes.get_ith(i).data;
+            cout<<minimum<<" - "<<ith_list_in_onlySortedOnes.get_ith(0).data<<endl;
+            if(minimum > ith_list_in_onlySortedOnes.get_ith(0).data)
             {
-                minimum =  onlySortedOnes.get_ith(i).data.get_ith(0).data;
+                minimum =   ith_list_in_onlySortedOnes.get_ith(0).data;//2
                 minIdx = i;
             }
         }
-        // cout<<minimum<<endl;
+         cout<<"min: "<<minimum<<endl;
         sorted.push(minimum);
-        onlySortedOnes.get_ith(minIdx).data.pop();
+        onlySortedOnes.get_ith(minIdx).data.pop();//tuk mahame edinicata
         while(onlySortedOnes.size() > 0 && onlySortedOnes.get_ith(0).data.size() == 0)
         {
             onlySortedOnes.pop();
@@ -186,17 +220,24 @@ void doStuff(List<List<int> > arg)
 
 int main()
 {
+
+     List<int> l;
+     l.push(4);
+     l.push(3);
+     l.push(5);
+     l.sorting();
+
     List<int> myList;
-    myList.push(4);
     myList.push(3);
+    myList.push(4);
     myList.push(1);
-    // myList.print();
+     myList.print();
 
     List<int> secondList;
     secondList.push(6);
     secondList.push(5);
     secondList.push(2);
-    // secondList.print();
+     secondList.print();
 
     // cout<<myList.pop()<<endl;
     //myList.print();

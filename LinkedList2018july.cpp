@@ -83,6 +83,28 @@ int main()
     input.close();
 
 
+    /*
+         vector<string> v;
+     ifstream input;
+     input.open("a.txt");
+     while(true){
+        string line;
+        getline(input,line);
+        v.push_back(line);
+        if (input.fail())
+    	{
+    		break;
+    	}
+
+     }
+    input.close();
+    for(int i=0;i<v.size();i++){
+        cout<<v[i]<<endl;
+    }
+
+    */
+    
+    
     cout<<str;
     str.erase(remove(str.begin(), str.end(), ' '), str.end());
     for(int i=0;i<str.size();i++)

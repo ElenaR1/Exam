@@ -1,6 +1,6 @@
-//13.07.2018
 #include <iostream>
-
+#include <fstream>
+#include<string.h>
 using namespace std;
 
 struct node{
@@ -49,6 +49,28 @@ void traverse(node* ptr, int curDepth, int depth){
         traverse(ptr->right,curDepth+1,depth);
     }
 }
+void serializeHelper(node* root, ostream& out) {
+    if(root==NULL) {
+        out<<"*";
+        return;
+    }else {
+        out<<"("<<root->data<<" ";
+    }
+    serializeHelper(root->left, out);
+    out<<" ";
+    serializeHelper(root->mid, out);
+    out<<" ";
+    serializeHelper(root->right, out);
+    out<<")";
+}
+
+
+void serialize(node* root, char* filename){
+    ofstream out;
+    out.open(filename);
+    serializeHelper(root, out);
+    out.close();
+}
 int main()
 {
     node* b=new node('b');
@@ -63,7 +85,7 @@ int main()
     node* t = new node('t');
 
     b->left=x;
-    b->right=y;
+    b->mid=y;
     x->left=p;
     x->mid=q;
     x->right=r;
@@ -76,6 +98,46 @@ int main()
     int md=maxDepth(b);
     cout<<md<<endl;
     traverse(b,1,4);
+
+    serialize(b, "tree.txt");
+
+
+    ifstream infile;
+   infile.open("tree.txt");
+
+   cout << "Reading from the file" << endl;
+   char data[100];
+    infile >> data;
+   while(!infile.eof()){
+   // write the data at the screen.
+   cout << data;
+   infile >> data;
+   }
+
+
+   // close the opened file.
+   infile.close();
+
+   ifstream in;
+   in.open("a.txt");
+
+   cout << "Reading from the file" << endl;
+   char d[100];
+    in >> d;
+   while(!in.eof()){
+   // write the data at the screen.
+    cout << d<<" ";
+   in >> d;
+   }
+   while(!in.eof()){
+   // write the data at the screen.
+   string str;
+    while(getline(in, str)) {
+        cout<<str;
+    }
+
+   }
+   in.close();
 
   /*int** m=new int*[3];
   for(int i=0; i<3; i++){

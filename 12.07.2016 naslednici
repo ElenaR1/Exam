@@ -1,0 +1,97 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+using namespace std;
+
+struct Node {
+    int data;
+    vector<Node*> children;
+    Node(int data) : data(data) {}
+};
+
+void printTree(Node* str){
+    if(str==NULL){
+        return;
+    }
+    cout<<str->data<<" ";
+for(Node* child:str->children){
+        cout<<1;
+    }
+}
+
+Node* makeNode(istream& in) {
+    cout<<"makeNode"<<endl;
+    //char c;
+    //in.get(c);
+    //cout<<c<<endl;
+    cout<<(char)in.peek()<<endl;
+    if((char)in.peek() == ')')//Returns the next character in the input sequence, without extracting it: The character is left as the next character to be extracted from the stream.
+        {
+        cout<<"HERE"<<endl;
+        return NULL;
+    }
+    //char cc;
+    //in.get(cc);
+    int top;
+    in>>top;
+    cout<<"top "<<top<<endl;
+    Node* result = new Node(top);
+    in.ignore(2);
+    while( (char)in.peek() == '(') {
+            cout<<"in while "<<(char)in.peek()<<endl;
+        in.ignore();
+        Node* child = makeNode(in);
+
+        result->children.push_back(child);
+        //cout<<"in while "<<top<<" "<<(char)in.peek()<<endl;
+        in.ignore(2);
+        if((char)in.peek() == ',') {
+            in.ignore(2);
+        }
+    }
+
+    return result;
+}
+
+Node* constructTree(char* filename) {
+    ifstream in(filename);
+    char c;
+    if(in.eof()) {
+        return NULL;
+    }
+   // in.get(c);
+    //cout<<c<<endl;
+    cout<<(char)in.peek()<<endl;
+    in.ignore();
+    //in.get(c);
+    //cout<<c<<endl;
+    Node* root = makeNode(in);
+    in.ignore();
+
+    in.close();
+    return root;
+}
+
+void dfsVisit(Node* root, int currentSum, int& maxSum) {
+    if(root == NULL) {
+        return;
+    }
+
+    if(currentSum+root->data > maxSum) {
+            maxSum = currentSum+root->data;
+    }
+
+    for(Node* child : root->children) {
+        dfsVisit(child, currentSum + root->data, maxSum);
+    }
+}
+
+int main()
+{
+    Node* node =constructTree("foo.txt");
+     cout<<node->data<<endl;
+     //printTree(node); zaciklq
+
+    return 0;
+}

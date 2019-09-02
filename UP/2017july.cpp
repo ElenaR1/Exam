@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//taka se kopirat dinamichni elementi
 char** copyTerrain(int m, int n, char** terrain)
 {
     char** newT = new char*[m];
@@ -10,7 +11,7 @@ char** copyTerrain(int m, int n, char** terrain)
         newT[i] = new char[n];
         for(int j=0; j<n; j++)
         {
-            newT[i][j] = terrain[i][j];
+            newT[i][j] = terrain[i][j];//kopira char po char
         }
     }
 
@@ -97,15 +98,19 @@ char** hunderYears(int m, int n, char** terrain)
 
 int main()
 {
-    
-    
+
+
     char* terrain[5] = {"14S2",
                         "23S1",
                         "SRR4",
                         "R214",
                         "23S1"
                         };
-
+    cout<<terrain[1]<<endl;
+    cout<<terrain[1][1]<<endl;
+    char **newt=new char*[5];
+    newt=terrain;
+    cout<<newt[1]<<endl;
 
     /*cout<<adjacent4s(2, 2, 5, 4, terrain)<<endl;
     cout<<adjacent4s(0, 0, 5, 4, terrain)<<endl;

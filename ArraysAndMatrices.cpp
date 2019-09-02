@@ -47,6 +47,9 @@ int main()
     char *w="hello";
     cout<<w<<endl;
     cout<<word<<endl;
+    char* ch_arr=new char[5];
+    ch_arr="hello";
+    cout<<ch_arr<<endl;
     printarray(word,5);
     printarray(w,5);
 

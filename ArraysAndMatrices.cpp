@@ -38,6 +38,13 @@ int main()
     string str_arr[]={"agr","vgtr"};
     printarray(str_arr,2);
 
+
+    int *ptr_arr=new int[3]{10,11,12};
+    printarray(ptr_arr,3);
+    ptr_arr[2]=15;
+    printarray(ptr_arr,3);
+
+
     cout<<endl;
     cout<<"MATRICES"<<endl;
 
@@ -68,9 +75,9 @@ int main()
 				 {5, 1}
 			      }
 			   };
-	cout<<"arr3[0][0][0] = "<<arr[0][0][0]<<"\n";
-	cout<<"arr3[0][2][1] = "<<arr[0][2][1]<<"\n";
-	cout<<"arr3[2][3][1] = "<<arr[2][3][1]<<"\n";
+//	cout<<"arr3[0][0][0] = "<<arr[0][0][0]<<"\n";
+	//cout<<"arr3[0][2][1] = "<<arr[0][2][1]<<"\n";
+	//cout<<"arr3[2][3][1] = "<<arr[2][3][1]<<"\n";
 
 
 }

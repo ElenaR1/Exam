@@ -8,6 +8,14 @@ void printarray (T *arg, int length) {
     cout << arg[n] << ' ';
   cout << '\n';
 }
+
+template <class T>
+void printChararray (T **arg, int length) {
+  for (int n=0; n<length; ++n)
+    cout << arg[n] << ' ';
+  cout << '\n';
+}
+
 template <class T>
 void printmat (T arg[][2], int n,int m) {
   for (int i=0; i<n; ++i){
@@ -29,24 +37,35 @@ int main()
     cout<<mypointer[1]<<endl;
     printarray(arr,6);
     printarray(arr1,6);
+     int *ptr_arr=new int[3]{10,11,12};
+    printarray(ptr_arr,3);
+    ptr_arr[2]=15;
+    printarray(ptr_arr,3);
+
+    cout<<"=============CHARS AND STRINGS==========="<<endl;
     char word[]="hello";
     char *w="hello";
     cout<<w<<endl;
     cout<<word<<endl;
     printarray(word,5);
     printarray(w,5);
+
+
+    char* char_arr[]={"hello","hola"};
+    printChararray(char_arr,2);
+    char** char_arr2=new char*[2]{"hello","hola"};
+    printChararray(char_arr2,2);
+
+
     string str_arr[]={"agr","vgtr"};
     printarray(str_arr,2);
 
 
-    int *ptr_arr=new int[3]{10,11,12};
-    printarray(ptr_arr,3);
-    ptr_arr[2]=15;
-    printarray(ptr_arr,3);
+
 
 
     cout<<endl;
-    cout<<"MATRICES"<<endl;
+    cout<<"===========MATRICES=============="<<endl;
 
     int n=3;
     int m=3;

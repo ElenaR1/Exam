@@ -21,14 +21,16 @@ int area(int m, int n, char** arr) {
     bool** passed = new bool*[m];
     for(int i=0; i<m; i++) {
         passed[i] = new bool[n];
-    }
+        for(int j=0;j<n;j++){
+                passed[i][j]=false;
+    }}
 
-    /*for(int i=0; i<m; i++) {
+    for(int i=0; i<m; i++) {
         for(int j=0; j<n; j++) {
             cout<<passed[i][j]<<" ";
         }
         cout<<endl;
-    }*/
+    }
 
     for(int i=0; i<m; i++) {
         for(int j=0; j<n; j++) {
@@ -68,4 +70,3 @@ int main()
 
     area(5, 4, arr);
 }
-

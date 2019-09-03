@@ -77,7 +77,7 @@ int main()
 //    printmat(mat,n,m);
     printmat(strmat,2,2);
 
-    int arr3[3][4][2] = {
+    int test[3][4][2] = {
 			      {
 				 {2, 4},
 				 {7, 8},
@@ -97,9 +97,51 @@ int main()
 				 {5, 1}
 			      }
 			   };
-//	cout<<"arr3[0][0][0] = "<<arr[0][0][0]<<"\n";
-	//cout<<"arr3[0][2][1] = "<<arr[0][2][1]<<"\n";
-	//cout<<"arr3[2][3][1] = "<<arr[2][3][1]<<"\n";
+    //for(int i=0;i<3;i++){
+  //      printmat(arr3[i]);
+   // }
+   for(int i = 0; i < 3; ++i)
+    {
+        for (int j = 0; j < 4; ++j)
+        {
+            for(int k = 0; k < 2; ++k)
+            {
+                cout << "test[" << i << "][" << j << "][" << k << "] = " << test[i][j][k] << endl;
+            }
+        }
+    }
+    cout<<test[0][0][0]<<endl;
+    cout<<test[0][0][1]<<endl;
+    char*** a=new char**[2];
+    a[0]=new char*[2]{"vreg","bvvtr"};
+     a[1]=new char*[2]{"aab","bbcc"};
+     for(int i=0;i<2;i++){
+        cout<<a[0][i]<<" ";
+     }
+    cout<<endl;
+    cout<<a[0][0]<<endl;
+
+   /* int **test_arr=new int[3][4][2]{
+			      {
+				 {2, 4},
+				 {7, 8},
+				 {3, 4},
+				 {5, 6}
+			      },
+			      {
+				 {7, 6},
+				 {3, 4},
+				 {5, 3},
+				 {2, 3}
+			      },
+			      {
+				 {8, 9},
+				 {7, 2},
+				 {3, 4},
+				 {5, 1}
+			      }
+			   };*/
+
 
 
 }

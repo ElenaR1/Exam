@@ -14,8 +14,9 @@ int main()
         while((char)input.peek()=='(' or (char)input.peek()==')' or (char)input.peek()==','or (char)input.peek()==' '){
             input.ignore();
         }
-        v.push_back((char)input.peek());
-        cout<<(char)input.peek()<<endl;
+        char cc=(char)input.peek();
+        v.push_back(cc);
+        cout<<cc<<endl;
         char c;
         input.get(c);
         if(input.fail()){

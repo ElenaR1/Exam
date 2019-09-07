@@ -114,6 +114,17 @@ public:
         }
         return *crr;
     }
+     box<T>* get(int n)
+    {
+        box<T> *crr=first;
+        int x=0;
+        while(x<n)
+        {
+            crr=crr->next;
+            x++;
+        }
+        return crr;
+    }
 
     bool isSorted()
     {
@@ -191,7 +202,7 @@ void doStuff(List<List<int> > arg)
     {
 
         int minIdx = 0;
-         List<int> first_list_in_onlySortedOnes=onlySortedOnes.get_ith(0).data;
+         List<int> first_list_in_onlySortedOnes=onlySortedOnes.get(0)->data;
         int minimum = first_list_in_onlySortedOnes.get_ith(0).data;//1
 
         for(int i=0; i<onlySortedOnes.size(); i++)
@@ -257,11 +268,9 @@ cout<<ptr->data<<endl;
     doStuff(listOfLists);
     /*
         printList(listOfLists);
-
         cout<<myList.isSorted();
         isSorted(listOfLists);*/
 }
-
 
 
 
